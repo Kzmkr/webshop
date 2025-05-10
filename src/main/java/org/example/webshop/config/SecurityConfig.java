@@ -20,14 +20,15 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/register",
-                                "/login"
+                                "/login",
+                                "/"
 
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("")
+                        .defaultSuccessUrl("/")
                         .permitAll()
                 )
 
