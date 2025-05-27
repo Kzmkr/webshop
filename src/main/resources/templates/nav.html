@@ -1,0 +1,34 @@
+<div th:fragment="navbar" id="navbar">
+<nav class="navbar navbar-expand-lg bg-primary">
+    <a class="navbar-brand" href="/"><i class="oma oma-t-rex" style="font-size: 8rem; height: 6rem; vertical-align: 0rem; margin: 0;"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categorys
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a th:each="category : ${categories}" class="dropdown-item" href="#" th:text="${category.name}" value="name">Name</a>
+                    <div class="dropdown-divider"></div>
+
+                </div>
+            </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        </form>
+
+
+
+                <a href="/profile"><i class="oma oma-bust-in-silhouette" style="font-size: 5rem;"></i></a>
+
+
+    </div>
+</nav>
+</div>

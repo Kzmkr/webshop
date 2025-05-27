@@ -1,7 +1,6 @@
 package org.example.webshop.config;
 
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,31 +15,33 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-            http
-                    .csrf(csrf -> csrf.disable()) // Typically disabled for APIs, be cautious
-                    .authorizeHttpRequests(auth -> auth
-                            // Public endpoints
-                            .requestMatchers(
-                                    "/",
-                                    "/register",
-                                    "/login"
-                            ).permitAll()
+        http
+                .csrf(csrf -> csrf.disable()) // Typically disabled for APIs, be cautious
+                .authorizeHttpRequests(auth -> auth
+                        // Public endpoints
+                        .requestMatchers(
+                                "/",
+                                "/register",
+                                "/login",
+                                "/static",
+                                "/css/**",
+                                "/uploads/**"
 
-                            .anyRequest().authenticated()
+                        ).permitAll()
 
-                    )
-                    .formLogin(form -> form
-                            .loginPage("/login")
-                            .defaultSuccessUrl("/")
-                            .permitAll()
-                    )
-                    .httpBasic(basic -> basic.realmName("Webshop API"))
-                  .logout(logout -> logout.permitAll());
+                        .anyRequest().authenticated()
 
-            return http.build();
-        }
+                )
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/",false)
+                        .permitAll()
+                )
+                .httpBasic(basic -> basic.realmName("Webshop API"))
+                .logout(logout -> logout.permitAll());
 
-
+        return http.build();
+    }
 
 
     @Bean
