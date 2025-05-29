@@ -80,6 +80,12 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>3.1.2</version>
+        </dependency>
+
 
 
     </dependencies>
@@ -110,7 +116,42 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.6.2</version>
+
+
+            </plugin>
+
+
+
+
         </plugins>
     </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>checkstyle</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+
 
 </project>
