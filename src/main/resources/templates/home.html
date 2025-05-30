@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en"   data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" >
     <link rel="stylesheet" href="/css/openmoji-color-awesome.css">
     <link rel="stylesheet" href="/css/brite.css">
 
@@ -12,25 +11,38 @@
 <body>
 
 <div th:replace="~{nav :: navbar}"></div>
+<div class="row">
+    <div class="col-1">
 
-<h1>Products</h1>
-
-<i class="oma oma-flag-hungary" style="font-size: 3rem;"></i>
-<div class="row" th:each="product : ${products}">
-<div class="card" style="max-width: 320px">
-    <img th:src="${product.imageUrl}" class="card-img-top" alt="Product Image">
-    <div class="card-body">
-        <h5 class="card-title"  th:text="${product.name}">name</h5>
-        <p class="card-text" th:text="${product.description}">description</p>
-        <div class="d-flex justify-content-between align-items-center">
-            <span class="h5 mb-0" th:text="${product.price}">00.0</span>
+        <div>
+            <p>Filters</p>
         </div>
     </div>
-    <div class="card-footer ">
-        <button class="btn btn-primary btn-sm">Add to Cart</button>
+    <div class="col">
+
+        <h1 th:text="#{message.nav.products}">Products</h1>
+        <p>Current Locale: <span th:text="${#locale}"></span></p>
+
+        <div class="row row-cols-1 row-cols-sm-3 row-cols-md-5 g-4">
+            <div class="col" th:each="product : ${products}">
+                <div class="card" style="max-width: 320px">
+                    <img th:src="${product.imageUrl}" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${product.name}">name</h5>
+                        <p class="card-text" th:text="${product.description}">description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="h5 mb-0" th:text="${product.price}">00.0</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-sm" th:text="#{message.product.add_to_cart}">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

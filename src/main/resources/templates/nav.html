@@ -9,8 +9,8 @@
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Categorys
+                <a th:text="#{message.nav.categories}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    categories
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a th:each="category : ${categories}" class="dropdown-item" href="#" th:text="${category.name}" value="name">Name</a>
@@ -20,6 +20,15 @@
             </li>
 
         </ul>
+
+        <form th:action="@{/}" method="get">
+            <label for="langSelect" th:text="#{message.lang.lang}">lang</label>
+            <select name="lang" id="langSelect" onchange="this.form.submit()">
+                <option value="en" th:selected="${#locale.language == 'en'}">English</option>
+                <option value="hu" th:selected="${#locale.language == 'hu'}">Magyar</option>
+            </select>
+        </form>
+
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         </form>
