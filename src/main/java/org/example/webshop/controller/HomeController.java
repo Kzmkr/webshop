@@ -7,10 +7,12 @@ import org.example.webshop.model.Product;
 import org.example.webshop.service.CategoryService;
 import org.example.webshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
@@ -42,11 +44,13 @@ public class HomeController {
      * @return the name of the view to render ("home")
      */
     @GetMapping("/")
-    public String login(Model model) {
+    public String home(Model model, @RequestParam(defaultValue = "1") int page) {
         List<Category> categories = categoryService.getAll();
         model.addAttribute("categories", categories);
         List<Product> products = productService.getAll();
-        model.addAttribute("products", products);
+        Page<Product> pgP =productService.getPagedProducts(page-1,12,"price","DESC");
+        model.addAttribute("totalPages", pgP.getTotalElements());
+        model.addAttribute("products", pgP);
         return "home";
     }
 }

@@ -43,6 +43,26 @@
     </div>
 </div>
 
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}" th:classappend="${i == page} ? 'active'">
+            <a class="page-link" th:href="@{'/?page=' + ${i}}" th:text="${i}">1</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+
+</nav>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
