@@ -74,6 +74,16 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    /**
+     * Retrieves a paginated list of products sorted by the specified criteria.
+     *
+     * @param page         the page number to retrieve (zero-based index)
+     * @param size         the number of products per page
+     * @param sortBy       the field by which to sort the products (e.g., "price")
+     * @param sortDirection the direction of sorting ("ASC" for ascending, "DESC" for descending)
+     * @return a {@link Page} containing the paginated and sorted products
+     */
+
     public Page<Product> getPagedProducts(int page, int size, String sortBy, String sortDirection) {
         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
         Pageable pageable = PageRequest.of(page, size, sort);

@@ -11,8 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 /**
@@ -27,7 +27,7 @@ public class HomeController {
     /**
      * Constructs a new {@code HomeController} with the specified services.
      *
-     * @param productService the service used to manage products
+     * @param productService  the service used to manage products
      * @param categoryService the service used to manage categories
      */
     @Autowired
@@ -48,7 +48,7 @@ public class HomeController {
         List<Category> categories = categoryService.getAll();
         model.addAttribute("categories", categories);
         List<Product> products = productService.getAll();
-        Page<Product> pgP =productService.getPagedProducts(page-1,12,"price","DESC");
+        Page<Product> pgP = productService.getPagedProducts(page - 1, 12, "price", "DESC");
         model.addAttribute("totalPages", pgP.getTotalElements());
         model.addAttribute("products", pgP);
         return "home";
