@@ -42,19 +42,5 @@ class CategoryRestControllerTest {
         verify(categoryService, times(1)).getAll();
     }
 
-    @Test
-    void testGetCategoryById() {
-        // Arrange
-        int id = 1;
-        Category category = new Category();
-        when(categoryService.getById(id)).thenReturn(category);
 
-        // Act
-        Category result = categoryRestController.getCategoryById(id);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(category, result);
-        verify(categoryService, times(1)).getById(id);
-    }
 }

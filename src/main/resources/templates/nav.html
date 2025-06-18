@@ -21,7 +21,7 @@
 
         </ul>
 
-        <form th:action="@{/}" method="get">
+        <form >
             <label for="langSelect" th:text="#{message.lang.lang}">lang</label>
             <select name="lang" id="langSelect" onchange="this.form.submit()">
                 <option value="en" th:selected="${#locale.language == 'en'}">English</option>
@@ -29,8 +29,9 @@
             </select>
         </form>
 
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" th:action="@{/}" method="get">
+            <input class="form-control mr-sm-2" type="search" name="name" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
 
 

@@ -44,11 +44,14 @@ public class HomeController {
      * @return the name of the view to render ("home")
      */
     @GetMapping("/")
-    public String home(Model model, @RequestParam(defaultValue = "1") int page) {
+    public String home(Model model, @RequestParam(defaultValue = "1") int page,
+                       @RequestParam(defaultValue = "") String name,
+                       @RequestParam(defaultValue = "0.0") Float priceLow,
+                       @RequestParam(defaultValue = "9999999999999.9") Float priceHigh) {
+
         List<Category> categories = categoryService.getAll();
         model.addAttribute("categories", categories);
-        List<Product> products = productService.getAll();
-        Page<Product> pgP = productService.getPagedProducts(page - 1, 12, "price", "DESC");
+        Page<Product> pgP = productService.getFilteredProducts(name, page - 1, 12, "price", "DESC", priceLow, priceHigh);
         model.addAttribute("totalPages", pgP.getTotalElements());
         model.addAttribute("products", pgP);
         return "home";

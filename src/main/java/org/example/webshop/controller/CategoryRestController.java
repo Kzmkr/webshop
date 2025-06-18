@@ -1,6 +1,7 @@
 package org.example.webshop.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.example.webshop.model.Category;
 import org.example.webshop.service.CategoryService;
@@ -49,7 +50,7 @@ public class CategoryRestController {
      * @return the {@link Category} object with the specified ID
      */
     @GetMapping("/{id}")
-    public Category getCategoryById(@PathVariable int id) {
+    public Category getCategoryById(@PathVariable UUID id) {
         return categoryService.getById(id);
     }
 }

@@ -1,6 +1,7 @@
 package org.example.webshop.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.example.webshop.model.Category;
 import org.example.webshop.repository.CategoryRepository;
@@ -41,7 +42,16 @@ public class CategoryService {
      * @param id the ID of the category to retrieve
      * @return the {@link Category} entity with the specified ID, or {@code null} if not found
      */
-    public Category getById(int id) {
+    public Category getById(UUID id) {
         return categoryRepository.findById(id).orElse(null);
+    }
+
+    /**
+     * Saves the given {@link Category} entity to the repository.
+     *
+     * @param category the {@link Category} entity to save
+     */
+    public void save(Category category) {
+            categoryRepository.save(category);
     }
 }

@@ -93,6 +93,18 @@ public class ProductService {
         return productRepository.findAll(pageable);
     }
 
+    /**
+     * Retrieves a paginated and filtered list of products based on the specified criteria.
+     *
+     * @param name          the name of the product to filter by (can be partial or null for no filtering)
+     * @param page          the page number to retrieve (zero-based index)
+     * @param size          the number of products per page
+     * @param sortBy        the field by which to sort the products (e.g., "price")
+     * @param sortDirection the direction of sorting ("ASC" for ascending, "DESC" for descending)
+     * @param minPrice      the minimum price of the products to filter by
+     * @param maxPrice      the maximum price of the products to filter by
+     * @return a {@link Page} containing the paginated, sorted, and filtered products
+     */
     public Page<Product> getFilteredProducts(String name,
                                              int page, int size,
                                              String sortBy,

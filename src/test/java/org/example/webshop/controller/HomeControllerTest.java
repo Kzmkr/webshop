@@ -46,16 +46,16 @@ class HomeControllerTest {
         Page<Product> pagedProducts = new PageImpl<>(products);
 
         when(categoryService.getAll()).thenReturn(categories);
-        when(productService.getPagedProducts(0, 12, "price", "DESC")).thenReturn(pagedProducts);
+        when(productService.getFilteredProducts("", 0, 12, "price", "DESC", 0.f, 999999.0f)).thenReturn(pagedProducts);
 
         // Act
-        String viewName = homeController.home(model, 1);
+        String viewName = homeController.home(model, 1, "", 0.f, 999999.0f);
 
         // Assert
         assertNotNull(viewName);
         assertEquals("home", viewName);
         verify(categoryService, times(1)).getAll();
-        verify(productService, times(1)).getPagedProducts(0, 12, "price", "DESC");
+        verify(productService, times(1)).getFilteredProducts("", 0, 12, "price", "DESC", 0.f, 999999.0f);
         verify(model, times(1)).addAttribute("categories", categories);
         verify(model, times(1)).addAttribute("products", pagedProducts);
         verify(model, times(1)).addAttribute("totalPages", pagedProducts.getTotalElements());
