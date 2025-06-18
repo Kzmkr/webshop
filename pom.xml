@@ -135,6 +135,7 @@
                 <configuration>
                     <excludes>
                         <exclude>org/example/models/*</exclude>
+                        <exclude>org/example/webshop/specification/ProductSpecification.class</exclude>
                         <exclude>org/example/webshop/WebshopApplication.class</exclude>
                     </excludes>
                 </configuration>
