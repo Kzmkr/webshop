@@ -9,13 +9,16 @@ import java.util.UUID;
 
 import org.example.webshop.model.Product;
 import org.example.webshop.repository.ProductRepository;
+import org.example.webshop.specification.ProductSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
 
 /**
  * Service class for managing products in the webshop.
@@ -89,4 +92,23 @@ public class ProductService {
         Pageable pageable = PageRequest.of(page, size, sort);
         return productRepository.findAll(pageable);
     }
+
+    public Page<Product> getFilteredProducts(String name,
+                                             int page, int size,
+                                             String sortBy,
+                                             String sortDirection,
+                                             float minPrice,
+                                             float maxPrice) {
+
+        Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        Specification<Product> spec = Specification
+                .where(ProductSpecification.hasName(name))
+                .and(ProductSpecification.betweenPrice(minPrice, maxPrice));;
+
+        return productRepository.findAll(spec, pageable);
+    }
+
 }

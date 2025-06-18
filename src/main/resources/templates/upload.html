@@ -27,10 +27,17 @@
 
     <div class="col-md-1">
         <label for="categorie" class="form-label">Category:</label>
-        <select name="categorie" id="categorie" class="form-select">
-            <option th:each="category : ${categories}" th:text="${category.name}" value="name">Name</option>
-        </select>
+        <div class="position-relative d-inline-block">
+            <select name="categorie" id="categorie" class="form-select">
+                <option th:each="category : ${categories}" th:text="${category.name}" th:value="${category.name}">Name</option>
+            </select>
+            <button type="button" class="badge bg-primary position-absolute top-0 start-100 translate-middle text-decoration-none" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                <i class="oma oma-plus" style="font-size: 2em"></i>
+            </button>
+            </div>
     </div>
+
+
 
     <div class="col-md-8">
         <label for="description" class="form-label">Description:</label>
@@ -56,6 +63,35 @@
 <p th:if="${param.success}" class="alert alert-success mt-4">Product uploaded successfully!</p>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addCategoryForm" method="get" action="/add-category">
+                    <div class="mb-3">
+                        <label for="newCategoryName" class="form-label">Category Name:</label>
+                        <input type="text" id="newCategoryName" name="newCategoryName" class="form-control" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="parentCategory" class="form-label">Parent Category:</label>
+                        <select name="parentCategory" id="parentCategory" class="form-select">
+                            <option value="" selected>None</option> <!-- Default option for no parent -->
+                            <option th:each="category : ${categories}" th:text="${category.name}" th:value="${category.id}">Name</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

@@ -34,7 +34,7 @@ class UploadControllerTest {
     private MultipartFile imageFile;
 
     @InjectMocks
-    private UploadController uploadController;
+    private ProductController productController;
 
     @BeforeEach
     void setUp() {
@@ -48,7 +48,7 @@ class UploadControllerTest {
         when(categoryService.getAll()).thenReturn(categories);
 
         // Act
-        String viewName = uploadController.showUploadForm(model);
+        String viewName = productController.showUploadForm(model);
 
         // Assert
         assertNotNull(viewName);
@@ -64,7 +64,7 @@ class UploadControllerTest {
         Product product = new Product();
 
         // Act
-        String redirectUrl = uploadController.handleUploadForm(product, imageFile);
+        String redirectUrl = productController.handleUploadForm(product, imageFile);
 
         // Assert
         assertNotNull(redirectUrl);

@@ -56,6 +56,7 @@ public class ProductRestController {
         return productService.getById(id);
     }
 
+
     /**
      * Uploads a new product along with its associated image file.
      *
