@@ -30,7 +30,7 @@ public class ProductSpecification {
      */
     public static Specification<Product> hasCategory(String category) {
         return (root, query, criteriaBuilder) ->
-                criteriaBuilder.equal(root.get("category"), category);
+                criteriaBuilder.equal(root.get("category").get("name"), category);
     }
 
     /**

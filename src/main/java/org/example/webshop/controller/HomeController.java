@@ -51,8 +51,8 @@ public class HomeController {
 
         List<Category> categories = categoryService.getAll();
         model.addAttribute("categories", categories);
-        Page<Product> pgP = productService.getFilteredProducts(name, page - 1, 12, "price", "DESC", priceLow, priceHigh);
-        model.addAttribute("totalPages", pgP.getTotalElements());
+        Page<Product> pgP = productService.getFilteredProducts(name, page - 1, 3, "price", "DESC", priceLow, priceHigh);
+        model.addAttribute("totalPages", pgP.getTotalPages());
         model.addAttribute("products", pgP);
         return "home";
     }

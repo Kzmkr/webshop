@@ -36,7 +36,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints
                         .requestMatchers(
-                                "/",
                                 "/register",
                                 "/login",
                                 "/static",
@@ -47,7 +46,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/", false)
+                        .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
                 .httpBasic(basic -> basic.realmName("Webshop API"))

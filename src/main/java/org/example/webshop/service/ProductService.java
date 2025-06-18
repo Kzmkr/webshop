@@ -120,6 +120,7 @@ public class ProductService {
                 .where(ProductSpecification.hasName(name))
                 .and(ProductSpecification.betweenPrice(minPrice, maxPrice));;
 
+
         return productRepository.findAll(spec, pageable);
     }
 

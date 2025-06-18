@@ -101,7 +101,7 @@ class ProductControllerTest {
         String viewName = productController.showProductDetails(productId, model);
 
         // Assert
-        assertEquals("prod_d", viewName);
+        assertEquals("prod", viewName);
         verify(model, times(1)).addAttribute("product", product);
     }
     @Test

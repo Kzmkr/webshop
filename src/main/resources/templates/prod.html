@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/openmoji-color-awesome.css">
+    <link rel="stylesheet" href="/css/brite.css">
+</head>
+<body>
+<div th:replace="~{nav :: navbar}"></div>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Product Details</h1>
+    <div th:if="${product != null}" class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <img th:src="@{/{imageUrl}(imageUrl=${product.imageUrl})}"
+                 alt="Product Image" class="img-fluid rounded">
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}">Product Name</h5>
+                    <p class="card-text">
+                        <span class="h4 text-success" th:text="${product.price}">$0.00</span>
+                    </p>
+                    <p class="card-text" th:text="${product.description}">Product Description</p>
+
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary btn-sm" th:text="#{message.product.add_to_cart}">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p th:if="${product == null}" class="alert alert-danger text-center">Product not found!</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

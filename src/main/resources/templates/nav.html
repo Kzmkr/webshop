@@ -1,44 +1,29 @@
 <div th:fragment="navbar" id="navbar">
-<nav class="navbar navbar-expand-lg bg-primary">
-    <a class="navbar-brand" href="/"><i class="oma oma-t-rex" style="font-size: 8rem; height: 6rem; vertical-align: 0rem; margin: 0;"></i></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-
-            <li class="nav-item dropdown">
-                <a th:text="#{message.nav.categories}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    categories
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a th:each="category : ${categories}" class="dropdown-item" href="#" th:text="${category.name}" value="name">Name</a>
-                    <div class="dropdown-divider"></div>
-
-                </div>
-            </li>
-
-        </ul>
-
-        <form >
-            <label for="langSelect" th:text="#{message.lang.lang}">lang</label>
-            <select name="lang" id="langSelect" onchange="this.form.submit()">
-                <option value="en" th:selected="${#locale.language == 'en'}">English</option>
-                <option value="hu" th:selected="${#locale.language == 'hu'}">Magyar</option>
-            </select>
-        </form>
-
-        <form class="form-inline my-2 my-lg-0" th:action="@{/}" method="get">
-            <input class="form-control mr-sm-2" type="search" name="name" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+    <nav class="navbar navbar-expand-lg bg-primary p-3">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <i class="oma oma-t-rex" style="font-size: 8rem; height: 6rem; vertical-align: 0rem; margin: 0;"></i>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
 
+            <form class="d-flex align-items-center ms-auto me-auto" >
+                <input class="form-control me-2" type="search" name="name" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
 
-                <a href="/profile"><i class="oma oma-bust-in-silhouette" style="font-size: 5rem;"></i></a>
+            <form class="d-flex align-items-center me-3">
+                <label for="langSelect" class="me-2" th:text="#{message.lang.lang}">lang</label>
+                <select name="lang" id="langSelect" class="form-select" onchange="this.form.submit()">
+                    <option value="en" th:selected="${#locale.language == 'en'}">English</option>
+                    <option value="hu" th:selected="${#locale.language == 'hu'}">Magyar</option>
+                </select>
+            </form>
 
-
-    </div>
-</nav>
+            <a href="/profile" class="d-flex align-items-center">
+                <i class="oma oma-bust-in-silhouette" style="font-size: 5rem;"></i>
+            </a>
+        </div>
+    </nav>
 </div>

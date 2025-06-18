@@ -166,6 +166,6 @@ public class ProductController {
         Product product = productService.getById(id);
         model.addAttribute("product", product);
         System.out.println(id);
-        return "prod_d";
+        return "prod";
     }
 }
